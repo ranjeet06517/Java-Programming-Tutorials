@@ -1,0 +1,24 @@
+package com.test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TwoSumProblem {
+	
+	
+	public static void main(String[] str) {
+		int[] arr = {3,4,6,7,9,10,1,2,19};
+		int target  = 12;
+		
+		Map<Integer,Integer> hasmap  = new HashMap<Integer,Integer>();
+		
+		
+		for(int i =0;i<arr.length;i++) {
+			if(hasmap.containsKey(target-arr[i])) {
+				System.out.println("value at index "+i +" and  "+(hasmap.get(target-arr[i])));
+			}
+			hasmap.put(arr[i], i);
+		}
+
+	}
+}
