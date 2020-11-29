@@ -41,7 +41,7 @@ class Paranthesis
  { 
      int n = 3; 
      List<String> parenthesisList = new ArrayList<String>();
-     getParanthesis(parenthesisList,"", n,n,n); 
+     getParanthesis(parenthesisList,"",n,n); 
      parenthesisList.forEach((paranthesis)->{
      
     	 System.out.println(paranthesis);
