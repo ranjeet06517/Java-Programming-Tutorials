@@ -1,0 +1,52 @@
+package com.test;
+
+//combinations of balanced parentheses 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List; 
+
+class Paranthesis  
+{ 
+ // Function that print all combinations of  
+ // balanced parentheses 
+ // open store the count of opening parenthesis 
+ // close store the count of closing parenthesis 
+ static void getParanthesis(List<String> parenthesisList, String parentthesis, int open, int close) 
+ { 
+     if(open == 0 && close==0)  
+     { 
+         parenthesisList.add(parentthesis);
+         return ; 
+     } 
+     else
+     { 
+    	 if(open != 0) { 
+        	
+             getParanthesis(parenthesisList, parentthesis+ '(', open-1, close); 
+         } 
+         
+         if(open <close) { 
+             getParanthesis(parenthesisList, parentthesis+ ')', open, close-1); 
+         } 
+         
+        
+     } 
+ } 
+ 
+ 
+   
+ 
+ // driver program  
+ public static void main (String[] args)  
+ { 
+     int n = 3; 
+     List<String> parenthesisList = new ArrayList<String>();
+     getParanthesis(parenthesisList,"", n,n,n); 
+     parenthesisList.forEach((paranthesis)->{
+     
+    	 System.out.println(paranthesis);
+     })
+     ;
+     
+ } 
+} 
