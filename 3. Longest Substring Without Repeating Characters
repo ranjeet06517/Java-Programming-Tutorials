@@ -1,0 +1,47 @@
+package com.test;
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class LongestSubstring {
+	
+	
+	public static void main(String[] args) {
+		
+		String input ="";
+		String longestSubstring = "";
+		int longestSubstringLength = 0;
+		Set<Character> set = new HashSet<>();		
+		int start =0;
+		int end =0;
+		while(end<input.length()) {
+			char ch = input.charAt(end);
+			if(!set.contains(ch)) {
+				set.add(ch);
+			}else {
+				if(set.size()>longestSubstringLength) {
+					longestSubstring = input.substring(start,end);
+					longestSubstringLength = end-start;
+				}
+				//now move window till the new character duplicate found
+				while(start<end && end<input.length()) {
+					if(input.charAt(start)!=input.charAt(end)) {
+						set.remove(input.charAt(start));
+						start++;
+					}else {
+						start++;
+						break;
+					}
+				}
+			}
+			end++;
+		}
+		if(set.size()>longestSubstringLength) {
+			longestSubstring = input.substring(start,end);
+			longestSubstringLength = end-start;
+		}
+		System.out.println("longest substring: "+longestSubstring+" longestSubstringLength: "+longestSubstringLength);
+	}
+
+}
