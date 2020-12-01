@@ -1,0 +1,61 @@
+package com.test;
+
+public class TwoSortedArrayMedian {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] arr1 = {1,2};
+		int[] arr2 = {3,4};
+		double median =  getMedianFromTwoSortedArray(arr1,arr2);
+		System.out.print(median);
+	}
+	
+	private static double getMedianFromTwoSortedArray(int[] arr1,int[] arr2){
+		
+		if(arr1.length>arr2.length) {
+			//just reverse array so that always first array is sortest one
+			return getMedianFromTwoSortedArray( arr2, arr1);
+		}
+		
+		int low = 0;
+		int high = arr1.length;
+		
+		while(low<=high) {
+			System.out.println("low: "+low+" high: "+high);
+		int partitionArr1= (low+high)/2;  
+		int partitionArr2= (arr1.length+arr2.length+1)/2-partitionArr1; //it will handle odd and even case both
+		
+		//edge cases for arr1
+		int maxLeftArr1 = partitionArr1==0? Integer.MIN_VALUE:arr1[partitionArr1-1];
+		int minRightArr1 = partitionArr1==arr1.length? Integer.MAX_VALUE:arr1[partitionArr1];
+		
+		//edge cases for arr2
+		int maxLeftArr2 = partitionArr2==0? Integer.MIN_VALUE:arr2[partitionArr2-1];
+		int minRightArr2= partitionArr2==arr2.length? Integer.MAX_VALUE:arr2[partitionArr2];
+		
+		
+		//check do we found the result one
+		if(maxLeftArr1<=minRightArr2 && maxLeftArr2<=minRightArr1) {
+			//we found the exact partition
+			if((arr1.length+arr2.length)%2==0) {
+				//even case
+				return (double)(Math.max(maxLeftArr1,maxLeftArr2)+Math.min(minRightArr1,minRightArr2))/2;
+				
+			}else {
+				//odd case
+				return (double)Math.max(maxLeftArr1,maxLeftArr2);
+			}
+			
+		}else if(maxLeftArr1>minRightArr2) {
+			high= partitionArr1-1;
+		}else {
+			low = partitionArr1+1;
+		}
+				
+		}
+		throw new IllegalArgumentException();
+		
+	}
+
+}
