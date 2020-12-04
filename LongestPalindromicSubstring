@@ -1,0 +1,47 @@
+package com.test;
+
+public class LongestSubstringPalindrome {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s = "babad";
+		String substring = "";
+		if(s.length()==1) {
+			substring = s;
+		}
+		
+		for(int i =0;i<s.length();i++) {
+			//check for odd length
+			String palindromSubString = getPalindromSubString(s,i,i);
+			
+			if(palindromSubString.length()>substring.length()) {
+				substring = palindromSubString;
+			}
+			
+			//check for even length
+			if((i+1)<s.length()) {
+				 palindromSubString = getPalindromSubString(s,i,i+1);
+				
+				if(palindromSubString.length()>substring.length()) {
+					substring = palindromSubString;
+				}
+			}
+			
+		}
+		
+		System.out.println(substring);
+	}
+	
+	private static String getPalindromSubString(String s,int leftIndex,int rightIndex) {
+		
+		while(leftIndex>=0 && rightIndex<s.length() && s.charAt(leftIndex)==s.charAt(rightIndex)) {
+			leftIndex--;
+			rightIndex++;
+			
+		}
+		System.out.println("leftIndex:"+leftIndex+" rightIndex: "+rightIndex);
+		return s.substring(leftIndex+1, rightIndex);
+	}
+
+}
